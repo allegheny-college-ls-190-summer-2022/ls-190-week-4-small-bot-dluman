@@ -14,6 +14,15 @@ def load_keys():
 
 def tweet(message):
     """Handles authentication and tweeting."""
+    # Test if message is too long, quit if so, print stats
+    if len(message) > 240: # <-- if message is too long (i.e. more than 240 chars)
+        # The print statements are just "tracing" code
+        print(len(message), message) # <-- print both values with space between
+        print("It's too long!")
+        return # <-- Because I return here, nothing else happens
+    
+    # If message is not too long, go ahead
+    
     # Get keys from file
     keys = load_keys()
     # "Log in"
@@ -45,9 +54,6 @@ def main():
         if get_year() not in zodiac_year:
             tweet(f"It is not the year of the {zodiac}")
             break
-    # TODO: Implement your bot in the main function
-    #       provided here and dont forget to tweet!
-    pass    # <-- delete or comment this line out when done
     
 if __name__ == "__main__":
     main()
