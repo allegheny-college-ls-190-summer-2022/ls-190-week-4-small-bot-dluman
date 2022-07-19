@@ -19,6 +19,7 @@ page = 1
 #               DOMAIN          |----API------| |-----------PARAMETERS----------------|
 url = f"https://api.unsplash.com/search/photos/?client_id={api_access}&query=dinosaur&page={page}"
 
+# Need to get the "content" from response
 response = requests.get(url)
 data = json.loads(response.content)
 
@@ -29,6 +30,8 @@ results = []
 for page in range(pages):
     url = f"https://api.unsplash.com/search/photos/?client_id={api_access}&query=dinosaur&page={page}"
     response = requests.get(url)
-    results.append(response["results"])
+    resp_data = json.loads(response.content)
+    print(resp_data)
+    results.append(resp_data["results"])
     
 print(random.choice(results))
